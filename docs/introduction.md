@@ -2,7 +2,7 @@
 
 AI clients are no longer limited to what the model knows. They can use external capabilities — tools, Skills, MCP servers, APIs, workflows, and other agents. We call these capabilities **augments**.
 
-The number of augments is about to grow quickly. Some will be public, some will come from vendors, some will be built inside companies; some will be narrow tools for a single task, and others will be agents or workflows that know how to get something done. That creates a simple problem: **how does an AI client know what is available?**
+The number of augments is already growing quickly. Some are public, some come from vendors, some are built inside companies; some are narrow tools for a single task, and others are agents or workflows that know how to get something done. That creates a simple problem: **how does an AI client know what is available?**
 
 Today the answer is mostly manual. A user, developer, or IT admin has to find the augment, judge whether it is useful and trustworthy, connect it to the client, and keep that wiring current. That works when there are a handful of well-known tools. It breaks down when every product, team, vendor, and organization is publishing augments of its own.
 
