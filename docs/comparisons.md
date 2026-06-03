@@ -15,9 +15,3 @@ ADP is designed as a **superset** of existing agent and tool discovery approache
 ### What about the ACP Agent Registry
 
 The list of ACP agents in [ACP's Agent Registry](https://agentclientprotocol.com/get-started/registry) is already structurally close to the AI Catalog specification. ACP registries can export their directory manifests as standard `ai-catalog.json` feeds, enabling instant web-scale discovery for editor-context agents — without those agents having to be re-registered anywhere.
-
----
-
-### What about Open Plugins
-
-A plugin under the [Open Plugins](https://open-plugins.com/) standard is essentially a bundle of MCP servers, Skills, or other tools. By describing these bundles inside the standard AI Catalog specification, Open Plugins can leverage ADP's federated infrastructure for instant decentralized deployment, crawling, and semantic indexing. See [Open Plugins](open_plugins.md) for the envelope mapping.

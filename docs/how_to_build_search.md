@@ -2,7 +2,7 @@
 
 A discovery service is an active service that crawls static manifests, indexes augments semantically, and exposes the standard `POST /search` endpoint to clients.
 
-Building your own discovery service is entirely optional. If you only want to publish augments, you only need to host a static manifest (see [How to publish](how_to_publish.md)). To query augments, your client can connect to any existing public or private discovery service (see [Implementations](implementations.md) for active endpoints).
+Building your own discovery service is entirely optional. If you only want to publish augments, you only need to host a static manifest (see [How to publish](how_to_publish.md)). To query augments, your client can connect to any existing public or private discovery service.
 
 ---
 
