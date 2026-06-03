@@ -10,7 +10,7 @@ Today the answer is mostly manual. A user, developer, or IT admin has to find th
 
 The bottleneck is no longer invocation. It is **discovery**. A client cannot use a capability it does not know exists, a user cannot ask for an augment they have never heard of, and an enterprise cannot expect every employee to know which internal tools, approved vendor services, and private workflows apply to each task.
 
-This is the problem the **Augment Discovery Protocol (ADP)** solves. ADP lets a client ask one question: *what augment can help with this task?* The answer is not the result of running anything — it is a set of matching capabilities: what each one does, who provides it, where it lives, and how the client can reach it.
+This is the problem the **Augment Discovery Protocol (ADP)** solves. ADP lets a client ask one question: *what augment can help with this task?* The answer is a set of matching capabilities: what each one does, who provides it, where it lives, and how the client can reach it.
 
 ADP only handles discovery. The client invokes the augment it selects through that augment's own protocol — MCP, an API, an agent protocol, a workflow system, or something else. ADP sits *before* invocation; it helps the client decide which capability to use.
 
