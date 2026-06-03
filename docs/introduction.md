@@ -2,63 +2,83 @@
 
 > An augment no one can find is an augment no one can use.
 
-AI clients are no longer limited to what the model knows. They can reach external capabilities — tools, Skills, MCP servers, APIs, workflows, and other agents. We call these **augments**.
+AI clients are no longer limited to what the model knows. They can use external capabilities — tools, Skills, MCP servers, APIs, workflows, and other agents. We call these capabilities **augments**.
 
-The number of augments is about to grow quickly. Some are public, some come from vendors, some are built inside a company; some are narrow tools for a single task, others are full agents or workflows that know how to get something done. That growth creates a deceptively simple problem: **how does an AI client know what is available?**
+The number of augments is about to grow quickly. Some will be public, some will come from vendors, some will be built inside companies; some will be narrow tools for a single task, and others will be agents or workflows that know how to get something done. That creates a simple problem: **how does an AI client know what is available?**
 
-Today the answer is mostly manual. A user, developer, or IT admin has to find the augment, judge whether it is useful and trustworthy, connect it to the client, and keep that wiring current. This works when there are a handful of well-known tools. It breaks down once every product, team, vendor, and organization is publishing augments of its own. The bottleneck is no longer invocation — it is **discovery**. A client cannot use a capability it does not know exists, a user cannot ask for an augment they have never heard of, and no enterprise can expect every employee to track which internal tools, approved vendor services, and private workflows apply to each task.
+Today the answer is mostly manual. A user, developer, or IT admin has to find the augment, judge whether it is useful and trustworthy, connect it to the client, and keep that wiring current. That works when there are a handful of well-known tools. It breaks down when every product, team, vendor, and organization is publishing augments of its own.
 
-This is the problem the **Augment Discovery Protocol (ADP)** solves. ADP lets a client ask one question: *what augment can help with this task?* The answer is not the result of running anything — it is a set of matching capabilities, describing what each does, who provides it, where it lives, and how to reach it. ADP only finds; the client then invokes the augment it picks over that augment's own protocol, whether that is MCP, an API, an agent protocol, or a workflow system.
+The bottleneck is no longer invocation. It is **discovery**. A client cannot use a capability it does not know exists, a user cannot ask for an augment they have never heard of, and an enterprise cannot expect every employee to know which internal tools, approved vendor services, and private workflows apply to each task.
 
-ADP is a protocol, not a product. This site specifies it. Any number of discovery services can be built on top of it — **Agent Finder** is one such service — but ADP itself is the thing that lets a published augment be found by many clients, and a client reach augments far beyond its own pre-connected set.
+This is the problem the **Augment Discovery Protocol (ADP)** solves. ADP lets a client ask one question: *what augment can help with this task?* The answer is not the result of running anything — it is a set of matching capabilities: what each one does, who provides it, where it lives, and how the client can reach it.
+
+ADP only handles discovery. The client invokes the augment it selects through that augment's own protocol — MCP, an API, an agent protocol, a workflow system, or something else. ADP sits *before* invocation; it helps the client decide which capability to use.
+
+ADP is not a product. Any number of discovery services can implement it, and **Agent Finder** is one such service. The point is that an augment published once should be discoverable by many clients, and a client should be able to find useful augments well beyond the small set it already knows about.
 
 ---
 
 ## Why discovery is different from web search
 
-One might expect the answer to look like web search. It cannot, and the reason is worth understanding.
+It is tempting to think ordinary search could solve this. It cannot.
 
-Web search worked because the web already had a discoverable surface. Pages linked to other pages, HTML described content in a form browsers could render for people, and HTTP gave crawlers and browsers a common way to retrieve it. Finding something on the web in 1994 still meant a bookmark you had stumbled onto or a hand-kept list someone else maintained — but the surface was there for search engines to build on, and they did. Discovery moved off the user and into a service you ask, and that is what unlocked the scale.
+Web search worked because the web already had a discoverable surface: pages linked to other pages, HTML described content in a form browsers could render for people, and HTTP gave crawlers and browsers a common way to retrieve it. Search engines did not have to invent that surface — they built on the one that already existed.
 
-Augments have no equivalent surface yet. A capability is not a document to read; it is something that can act. To discover it safely and usefully, a client needs to know what it does, what tasks it is for, what inputs it expects, what permissions it may need, who provides it, how it is invoked, and whether it is appropriate for this user or organization. Without a standard way to express that, discovery falls back to manual wiring, private catalogs, ad hoc registries, and hard-coded integrations — none of which scale. ADP gives augments the surface they are missing.
+Augments have no equivalent surface yet. A document is something to read; a capability is something that can act. To discover a capability safely and usefully, a client needs more than its name and URL. It needs to know what the augment does, what tasks it handles, what inputs it expects, what permissions it may need, who provides it, how it is invoked, and whether it is appropriate for this user or organization.
+
+Without a common way to express that, discovery falls back to manual wiring, private catalogs, ad hoc registries, and hard-coded integrations — none of which scale. ADP gives augments the discovery surface they are missing.
 
 ---
 
-## The next step
+## The discovery problem
 
-The discovery problem is well recognized, and the work so far comes in two kinds. Foundry's Toolbox provides a way to assemble curated sets — a vetted collection a developer can point at. ToolLLM (Qin et al., 2023) and Claude's tool-search take a different step, making selection cheaper by moving it out of the context window: retrieving the relevant augments per query rather than injecting all of them.
+The discovery problem has several parts.
 
-ADP is an **abstraction layer over both.** It pins down just two things and leaves the rest open: how an augment describes itself, and how a client asks the discovery question and reads the answer. The service that answers can be built however its provider chooses — including with the very techniques above. A curated set becomes something any client can call uniformly, an augment published once is found by many clients, and a client reaches augments far beyond its own pre-connected set.
+First, augments need a way to describe themselves — enough for a discovery service to understand what an augment is for, when it should be used, and how a client can reach it.
+
+Second, clients need a way to ask for relevant capabilities. The question is not "give me all tools," it is "given this task, what capability should I use?"
+
+Third, discovery services need room to differ. One may index broadly, another may be curated, another may specialize in a domain, another may serve only one company. ADP should not require one global catalog, one ranking system, or one business model.
+
+Fourth, organizations need control over the answer. In an enterprise, not every available augment should be visible to every user: some tools are internal, some require subscriptions, some are approved for sensitive data, and some are not approved at all.
+
+ADP is built around these realities. It standardizes the discovery interaction — how augments describe themselves, how clients ask discovery questions, and how discovery services answer — and deliberately leaves ranking, hosting, business model, and invocation open.
 
 ---
 
 ## Not one catalog
 
-The goal is not a single global catalog of every augment. Because ADP is a protocol, we expect **many discovery services**, each defined by what it indexes and how it ranks. On the public web some will compete on coverage, indexing everything they can find to maximize recall, and others on curation — a smaller, vetted index with a high bar for quality and trust. A client gets different answers depending on which service it asks, the same way different search engines return different results.
+The goal is not a single global catalog of every augment. There will be many discovery services, each defined by what it indexes, whom it serves, and how it ranks. On the public web, some may optimize for coverage and others for quality, trust, or a particular domain.
 
-What makes this more than a matter of preference is control: **whoever runs the discovery service controls the answer set.** That is what the enterprise case turns on.
+A client gets different answers depending on which discovery service it asks. That is not a flaw — it is the point. Different users and organizations need different answer sets: a public service may include augments from across the web, a vendor service may expose a single ecosystem, and an enterprise service may expose only internal augments, paid vendor services, and vetted third-party capabilities.
+
+**Whoever runs the discovery service controls the answer set.** That is what makes the enterprise case important.
 
 ---
 
 ## Enterprise discovery
 
-The enterprise case makes the stakes clear. A company may have hundreds or thousands of useful capabilities — internal APIs, data tools, workflow automations, support agents, compliance and engineering tools, HR and finance systems, paid vendor services — most of them useful only if a client can discover them at the right moment. But the company also needs to decide which augments are approved, which users may see them, which data they may touch, and which vendor services are allowed.
+The enterprise case makes the stakes clear. A company may have hundreds or thousands of useful capabilities — internal APIs, data tools, workflow automations, support agents, compliance and engineering tools, HR and finance systems, and paid vendor services — most of them useful only if a client can discover them at the right moment.
 
-Neither manual integration nor asking every employee to browse a catalog solves this. What the company needs is a single discovery point where approved capabilities are made visible to AI clients, and nothing else is. An ADP discovery service is exactly that. Because the client discovers only through that service, discovery becomes the enforcement point for procurement, security, and compliance — the inverse of the open-web model, and deliberately so.
+But the company also needs control. It needs to decide which augments are approved, which users may see them, which data they may touch, and which vendor services are allowed. Manual integration does not solve this, and neither does asking every employee to browse a catalog.
+
+What the company needs is a single discovery point: a place where approved capabilities are made visible to AI clients, and nothing else is. An ADP discovery service provides that point. Because the client discovers through that service, discovery becomes where procurement, security, compliance, and platform decisions are reflected in what users can find.
 
 ---
 
 ## Composition
 
-Discovery services need not be isolated. A company may want one view that includes its private augments, selected vendor augments, and selected public ones; a public service may index many publishers; a specialized service may index a single ecosystem. ADP lets these services **compose** — an enterprise can combine private and public sources into one answer set while still controlling what its users see. An IT manager can define their service as "everything GitHub's discovery service serves, plus our internal augments" — a union of a public endpoint and a private one, queried as a single view.
+Discovery services should not have to be isolated. A company may want one view that includes its private augments, selected vendor augments, and selected public augments; a public service may index many publishers; a specialized service may index a single ecosystem.
 
-This is a property DNS has and web search does not. DNS resolvers compose: they forward to upstream servers and merge the global namespace with local zones, so every organization runs its own resolver without leaving the shared system. Web search has no equivalent — you query one engine's index, with no standard way to say "these results plus my company's, merged." ADP inherits the same property, so an enterprise extends the public ecosystem rather than walling itself off from it.
+ADP lets these services **compose**. An enterprise can expose one discovery endpoint that combines its internal augments with selected external services: employees see one answer set, while the company still controls what is included.
+
+This gives ADP a property closer to DNS than to web search. DNS allows local control while still participating in a larger shared system — an organization resolves private names and public names through the same resolver. Web search has no equivalent: you query one engine's index, with no standard way to say "these results plus my company's private results, merged." ADP applies a similar idea to capabilities — local control, upstream sources, and a larger ecosystem organizations can join without giving up control. The analogy is not exact (DNS resolves names; ADP returns ranked capability matches), but the architectural property is the same.
 
 ---
 
 ## Publishing
 
-For an augment to be discovered, it has to be described. A publisher describes an augment once — a single tool or skill, or a whole internal set — in a standard catalog file, hosts it on its own domain, and advertises it via a well-known URL, a `robots.txt` entry, an HTML tag, or DNS. Any ADP discovery service can then choose to index it. The catalog is published once and reachable by every service that includes it, rather than integrated separately into each client.
+For an augment to be discovered, it has to be described. A publisher should be able to describe an augment once — a single tool, a Skill, an MCP server, an API, a workflow, an agent, or a whole collection — and make that description available from its own domain. Discovery services can then choose whether to index it.
 
 Publishing does not mean every client will see the augment; it means the augment is available to be discovered by services that choose to include it. That separation matters: **publishers make capabilities available, discovery services decide what to serve, and clients decide which discovery services to trust.**
 
@@ -68,6 +88,6 @@ Publishing does not mean every client will see the augment; it means the augment
 
 ADP answers one question: *how does an AI client find the right external capability for a task?* It does not replace MCP, APIs, Skills, workflows, or agent protocols — it sits before them, helping the client discover which capability to use and then letting that capability's own protocol handle invocation.
 
-The shift is from manual wiring to discovery. Instead of asking "what has this client already been connected to?", the client asks "what augment can help with this task?" That is the layer ADP creates — and an augment no one can find is an augment no one can use.
+The shift is from manual wiring to discovery. Instead of asking "what has this client already been connected to?", the client can ask "what augment can help with this task?" That is the layer ADP creates — and an augment no one can find is an augment no one can use.
 
 [View the protocol on GitHub :material-github:](https://github.com/agentfinder-project/adp-docs){ .md-button .md-button--primary }
