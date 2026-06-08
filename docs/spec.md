@@ -1,6 +1,6 @@
-# Augment Discovery Protocol Specification
+# Agentic Resource Discovery Protocol Specification
 
-**Federated Discovery for AI Augments**
+**Federated Discovery for AI Agentic Resources**
 
 **Version**: v0.4.2 (Draft)  
 **Status**: Proposal  
@@ -8,9 +8,9 @@
 
 ## 1\. Overview
 
-LLMs increasingly rely on external capabilities — MCP tools, A2A agents, skills, and other callable services — to extend their functionality. In this document, we refer to these generically as **augments**.
+LLMs increasingly rely on external capabilities — MCP tools, A2A agents, skills, and other callable services — to extend their functionality. In this document, we refer to these generically as **agentic resources**.
 
-The **Augment Discovery Protocol (ADP)** is a specification that defines how augments are cataloged, discovered, and searched across federated networks.
+The **Agentic Resource Discovery Protocol (ARDP)** is a specification that defines how agentic resources are cataloged, discovered, and searched across federated networks.
 
 This version (v0.4.2) aligns the discovery framework with the broader ai-catalog standard, shifting towards a media-type-driven approach and mandating standard web protocols (REST) for discovery interfaces to ensure maximum interoperability.
 
@@ -18,19 +18,19 @@ This version (v0.4.2) aligns the discovery framework with the broader ai-catalog
 
 The prevailing model requires users or developers to explicitly “install” or hardcode each agent before use. As the ecosystem scales to thousands or millions of agents, we need a model where LLMs can discover and invoke agents dynamically, similar to how search engines discover web pages.
 
-Agent descriptions tend to be generic, and most LLMs currently select tools by including all descriptions in the context window — which does not scale. ADP addresses this by moving discovery outside the LLM into a dedicated discovery service, where richer signals (representative queries, publisher identity, compliance metadata, usage patterns) can be leveraged without consuming context window tokens.
+Agent descriptions tend to be generic, and most LLMs currently select tools by including all descriptions in the context window — which does not scale. ARDP addresses this by moving discovery outside the LLM into a dedicated discovery service, where richer signals (representative queries, publisher identity, compliance metadata, usage patterns) can be leveraged without consuming context window tokens.
 
 ## 3\. Core Design Principles
 
-ADP is guided by the following core design principles to ensure scalability, interoperability, and ease of adoption:
+ARDP is guided by the following core design principles to ensure scalability, interoperability, and ease of adoption:
 
 ### 3.1 Search-First Discovery
 
-Rather than requiring users or systems to pre-install agents (analogous to the mobile app store paradigm), ADP promotes a model where agents are discovered dynamically through search. Discovery services maintain a shared, continuously updated index, making capabilities discoverable the moment they are published.
+Rather than requiring users or systems to pre-install agents (analogous to the mobile app store paradigm), ARDP promotes a model where agents are discovered dynamically through search. Discovery services maintain a shared, continuously updated index, making capabilities discoverable the moment they are published.
 
 ### 3.2 Scalability Beyond Context Windows
 
-Traditional tool selection relies on injecting all descriptions into the LLM's context window, which does not scale. ADP moves the selection problem outside the LLM into a dedicated discovery service, leveraging information retrieval techniques to scale to thousands or millions of capabilities without consuming context window tokens.
+Traditional tool selection relies on injecting all descriptions into the LLM's context window, which does not scale. ARDP moves the selection problem outside the LLM into a dedicated discovery service, leveraging information retrieval techniques to scale to thousands or millions of capabilities without consuming context window tokens.
 
 ### 3.3 Artifact Agnostic Envelope
 
@@ -161,7 +161,7 @@ Each object in the entries array MUST contain:
 
 | Field | Type | Description |
 | :---- | :---- | :---- |
-| identifier | String | Globally unique logical identifier for discovery. MUST use a domain-anchored URN namespace format (urn:ai:\<publisher\>:\<namespace\>:\<agent-name\>) where \<publisher\> is a verifiable domain name. This guarantees cross-network uniqueness, nomenclature stability, and decentralized trust binding. See [§4.2.1](#421-augment-identifier-identifier-format-and-rationale) for detailed format specifications and architectural rationale. |
+| identifier | String | Globally unique logical identifier for discovery. MUST use a domain-anchored URN namespace format (urn:ai:\<publisher\>:\<namespace\>:\<agent-name\>) where \<publisher\> is a verifiable domain name. This guarantees cross-network uniqueness, nomenclature stability, and decentralized trust binding. See [§4.2.1](#421-agentic-resource-identifier-identifier-format-and-rationale) for detailed format specifications and architectural rationale. |
 | displayName | String | Human-readable name. |
 | type | String | Type of the AI artifact. |
 
@@ -185,9 +185,9 @@ Optional fields:
 | metadata | Map | Custom metadata key-value pairs. |
 | trustManifest | Object | Verifiable identity and trust metadata. |
 
-### 4.2.1 Augment Identifier (identifier) Format and Rationale
+### 4.2.1 Agentic Resource Identifier (identifier) Format and Rationale
 
-The identifier field serves as the primary logical handle for an augment across federated discovery networks. It MUST follow a standardized, domain-anchored URN format complying with IETF RFC 8141:
+The identifier field serves as the primary logical handle for an agentic resource across federated discovery networks. It MUST follow a standardized, domain-anchored URN format complying with IETF RFC 8141:
 
 ```
 urn:ai:<publisher>:<namespace>:<agent-name>
@@ -398,10 +398,10 @@ Publishers advertise their capability manifests via the following mechanisms:
 
 Discovery service instances populate their indexes through ingestion pipelines:
 
-* **Web Ingestion (Required)**: Crawling ai-catalog.json files from discovered URIs. All ADP implementations MUST support this.  
+* **Web Ingestion (Required)**: Crawling ai-catalog.json files from discovered URIs. All ARDP implementations MUST support this.  
 * **Additional Pipelines (Optional)**: discovery services may support scanning git repositories, npm registries, or OCI registries as indicated by their configuration.
 
-## 7\. The ADP API
+## 7\. The ARDP API
 
 A discovery service **MUST** expose a standard HTTP REST search interface to guarantee universal federation. The operational base URL for these endpoints is discovered dynamically by identifying catalog entries within the static ai-catalog.json manifest that carry the application/ai-registry+json media type, as defined in §4.1.
 
