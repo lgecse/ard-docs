@@ -54,4 +54,4 @@ If a client requests `federation: auto` in their search query, the service acts 
     *   De-duplicate entries by their primary key URN `identifier` (giving preference to the highest score or verified signature).
     *   Re-sort the merged list by `score` and return the unified results to the client.
 
-This is what gives ARDP its [DNS-like composition property](introduction.md): services forward to upstream services and merge results, so an enterprise can run its own while still participating in the larger shared ecosystem.
+This is what gives ARDS its [DNS-like composition property](introduction.md): services forward to upstream services and merge results, so an enterprise can run its own while still participating in the larger shared ecosystem.

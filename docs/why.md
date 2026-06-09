@@ -2,7 +2,7 @@
 
 > Organizing agents, tools, and skills isn't really all that difficult, until you need to do so globally and with cryptographic trust guarantees.
 
-The Agentic Resource Discovery Protocol (ARDP) is a lightweight, domain-anchored discovery specification. It defines how agentic resources — MCP servers, A2A cards, Skills, and traditional API tools — are cataloged, searched, and dynamically discovered across composable, federated networks of discovery services.
+The Agentic Resource Discovery Specification (ARDS) is a lightweight, domain-anchored discovery specification. It defines how agentic resources — MCP servers, A2A cards, Skills, and traditional API tools — are cataloged, searched, and dynamically discovered across composable, federated networks of discovery services.
 
 ---
 
@@ -14,19 +14,19 @@ Feeding every available agentic resource schema directly into a system prompt wo
 ❌ Walled garden / prompt-stuffing:
 [System Prompt] + [User Query] + [Tool A] + [Tool B] + [Tool C]... = Prompt Bloat
 
-✅ Discovery-first (ARDP):
+✅ Discovery-first (ARDS):
 [User Query] ──> [Discovery service (POST /search)] ──> [Top 3 agentic resources] ──> [LLM Context]
 ```
 
-Instead of forcing the model to sort through the noise, ARDP moves selection outside the active context window. The orchestrator queries a dedicated discovery service first, injecting only the top matching schemas into the final prompt.
+Instead of forcing the model to sort through the noise, ARDS moves selection outside the active context window. The orchestrator queries a dedicated discovery service first, injecting only the top matching schemas into the final prompt.
 
 ---
 
 ## 2. How it differs from the "app store" model
 
-ARDP moves away from manually installed, hardcoded integrations toward dynamic runtime discovery.
+ARDS moves away from manually installed, hardcoded integrations toward dynamic runtime discovery.
 
-| Vector | Centralized registries | ARDP discovery services |
+| Vector | Centralized registries | ARDS discovery services |
 | :--- | :--- | :--- |
 | **Discovery** | Manual registration / gatekeeper approval | Dynamic crawling and indexing (SEO for agents) |
 | **Hosting** | Single central repository database | Self-hosted on publisher domains |
@@ -37,7 +37,7 @@ ARDP moves away from manually installed, hardcoded integrations toward dynamic r
 
 ## 3. Decentralized trust (no central kingmakers)
 
-Centralized directories create administrative bottlenecks and unilateral gatekeepers. ARDP avoids this by anchoring logical names directly to DNS domains:
+Centralized directories create administrative bottlenecks and unilateral gatekeepers. ARDS avoids this by anchoring logical names directly to DNS domains:
 
 ```text
 urn:ai:acme.com:finance:trading
@@ -51,7 +51,7 @@ urn:ai:acme.com:finance:trading
 
 ## 4. The core mechanics
 
-ARDP operates on a simple envelope design using standard and proposed **IANA media types** (like `application/mcp-server+json` or `application/a2a-agent-card+json`) to wrap different protocols, delegating execution details to the underlying schemas.
+ARDS operates on a simple envelope design using standard and proposed **IANA media types** (like `application/mcp-server+json` or `application/a2a-agent-card+json`) to wrap different protocols, delegating execution details to the underlying schemas.
 
 ```mermaid
 sequenceDiagram

@@ -2,7 +2,7 @@
 
 ## Core team
 
-ARDP was designed and reviewed by a core team of agent builders at:
+ARDS was designed and reviewed by a core team of agent builders at:
 
 - Amazon
 - Cisco
@@ -11,7 +11,7 @@ ARDP was designed and reviewed by a core team of agent builders at:
 - HuggingFace
 - Microsoft
 
-All of you are building agents, tools, Skills, and more. We encourage you to add support for AI Catalog and ARDP — see our [How to publish](how_to_publish.md) guide.
+All of you are building agents, tools, Skills, and more. We encourage you to add support for AI Catalog and ARDS — see our [How to publish](how_to_publish.md) guide.
 
 ## Contributors & endorsers
 

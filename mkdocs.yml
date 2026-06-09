@@ -1,6 +1,6 @@
 # Project information
-site_name: ardp.io
-site_url: https://ardp.io/
+site_name: ards.io
+site_url: https://ards.io/
 site_description: A protocol for discovering agentic resources — tools, Skills, MCP servers, APIs, workflows, and agents — for AI clients
 repo_name: ardp-project/docs
 repo_url: https://github.com/ardp-project/docs
@@ -78,7 +78,7 @@ nav:
   - Home: index.md
   - About:
     - Introduction: introduction.md
-    - Why ARDP?: why.md
+    - Why ARDS?: why.md
     - Comparisons: comparisons.md
     - Contributors: contributors.md
     - FAQ: faq.md
@@ -87,5 +87,5 @@ nav:
     - How clients discover: how_agents_search.md
     - How to build a discovery service: how_to_build_search.md
   - Specifications:
-    - ARDP Specification: spec.md
+    - ARDS Specification: spec.md
     - AI Catalog Spec: ai_catalog_spec.md

@@ -1,6 +1,6 @@
 # How Clients Discover
 
-This guide outlines how AI client orchestrators (such as Claude Code, Gemini, Copilot) query ARDP discovery services at runtime to find and load agentic resources.
+This guide outlines how AI client orchestrators (such as Claude Code, Gemini, Copilot) query ARDS discovery services at runtime to find and load agentic resources.
 
 ---
 
