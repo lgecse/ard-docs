@@ -84,8 +84,8 @@ nav:
     - Contributors: contributors.md
     - FAQ: faq.md
   - Guides:
-    - How to publish: how_to_publish.md
     - Connect a chatbot: connect.md
+    - How to publish: how_to_publish.md
     - How to build a client: how_to_build_a_client.md
   - Specifications:
     - ARDS Specification: spec.md
