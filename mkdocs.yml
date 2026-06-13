@@ -83,6 +83,7 @@ nav:
     - Interoperability: interoperability.md
     - Contributors: contributors.md
     - FAQ: faq.md
+    - Glossary: glossary.md
   - Guides:
     - Connect a chatbot: connect.md
     - How to publish: how_to_publish.md
