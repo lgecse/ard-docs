@@ -77,6 +77,7 @@ plugins:
 # Navigation
 nav:
   - Home: index.md
+  - Get started: get_started.md
   - About:
     - Introduction: introduction.md
     - Why ARD?: why.md
