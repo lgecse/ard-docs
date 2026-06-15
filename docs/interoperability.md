@@ -9,7 +9,7 @@ ARD is designed as a **superset** of existing agent and tool discovery approache
 
 ## How does ARD relate to registries and tool catalogs?
 
-The ecosystem already has many **curated collections of agentic resources**: registries for MCP servers and A2A agents, plugin directories like [Open Plugins](https://open-plugins.com/), and platform tool catalogs like [Microsoft Foundry's](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/tool-catalog) Foundry Tools. Each is a **centralized directory** — resources are submitted to it, it owns the canonical list, and clients query that one list. They're useful, but each is an island, with its own onboarding, governance, and reach.
+The ecosystem already has many **curated collections of agentic resources**: registries for MCP servers and A2A agents, plugin directories like [Open Plugins](https://open-plugins.com/), and platform tool catalogs from some partners. Each is a **centralized directory** — resources are submitted to it, it owns the canonical list, and clients query that one list. They're useful, but each is an island, with its own onboarding, governance, and reach.
 
 ARD inverts the relationship. Instead of publishing *into* each collection, a publisher describes a resource once on its own domain (`yourdomain.com/.well-known/ai-catalog.json`), and any discovery service can index it organically — no central gatekeeper, no per-collection re-registration. Discovery becomes a property of the open web, the way search engines crawl sites, rather than a list owned by one operator.
 
