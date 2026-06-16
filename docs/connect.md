@@ -12,9 +12,10 @@ Discover](https://github.com/huggingface/hf-discover)** — exposes the search
 interface; the connector just points your chatbot at an endpoint you choose.
 Nothing is installed automatically.
 
-## What it does
+## What these connectors do
 
-Once connected, ask your chatbot to find a capability for a task. It will:
+Once connected, ask your chatbot to find a capability for a task. These
+ready-made connectors will:
 
 1. **Ask which Agent Finder endpoint** to search (you stay in control of where
    results come from).
@@ -24,6 +25,25 @@ Once connected, ask your chatbot to find a capability for a task. It will:
    safety rating).
 4. **Never auto-install.** Only after you pick a result does it show you how to
    add that resource yourself.
+
+### This is one design among several
+
+That flow is a deliberate choice — the most conservative one — **not** something
+ARD requires. ARD is just the discovery layer underneath; a connector can sit
+anywhere on a spectrum of autonomy:
+
+- **(a) Find on request, then install on approval** — *what these connectors do.*
+  You ask it to find tools, it presents matches, and you choose what to install.
+  A human is in the loop at both ends.
+- **(b) Auto-discover, then install on approval** — the chatbot decides on its
+  own to query an Agent Finder when it hits a missing capability mid-task, but
+  still asks before installing anything.
+- **(c) Auto-discover and auto-install** — the chatbot queries *and* installs
+  without prompting. The most autonomous; appropriate only with a trusted,
+  curated finder and a sandboxed environment.
+
+These connectors ship as **(a)** for maximum user control, but you can build your
+own at any of these levels.
 
 ## Two ways to connect
 
