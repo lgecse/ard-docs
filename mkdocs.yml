@@ -87,7 +87,12 @@ nav:
     - FAQ: faq.md
     - Glossary: glossary.md
   - Guides:
-    - Connect a chatbot: connect.md
+    - Connect a chatbot:
+      - connect.md
+      - Claude: connect/claude.md
+      - ChatGPT: connect/chatgpt.md
+      - Microsoft Copilot: connect/copilot.md
+      - Gemini: connect/gemini.md
     - How to publish: how_to_publish.md
     - How to build a client: how_to_build_a_client.md
   - Specifications:
