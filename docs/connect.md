@@ -63,7 +63,7 @@ and the MCP connector:
 
 - **[Claude](connect/claude.md)** — Skill (Claude Code plugin) + remote MCP connector
 - **[ChatGPT](connect/chatgpt.md)** — Skill (beta) + remote MCP (Developer mode)
-- **[GitHub Copilot](connect/github-copilot.md)** — custom instructions + remote MCP (VS Code `mcp.json`)
+- **[GitHub Copilot](connect/github-copilot.md)** — Agent Skill (`SKILL.md`) + remote MCP (VS Code `mcp.json`)
 - **[Microsoft Copilot](connect/microsoft-copilot.md)** — declarative agent + remote MCP (Copilot Studio)
 - **[Gemini](connect/gemini.md)** — Gem + remote MCP (Gemini CLI)
 

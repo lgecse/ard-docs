@@ -1,25 +1,42 @@
 # Connect GitHub Copilot
 
 GitHub Copilot is the AI coding assistant in VS Code, the other IDEs, the CLI,
-and on github.com. It doesn't use "Skills" — the equivalent is **custom
-instructions**, paired with Agent Finder added as a **remote MCP** tool so
-Copilot gets a native `search` tool.
+and on github.com. Connect it to an Agent Finder either as an **Agent Skill** (a
+`SKILL.md` Copilot discovers and activates on its own) or a **remote MCP
+connector**. They work well together — the MCP connector gives Copilot the
+`search` tool; the Skill gives it the "ask first, never auto-install" behavior.
 
-## Option A — Custom instructions
+## Option A — Agent Skill
 
-**Install.** Add the instructions from the connectors repo
-([`skills/copilot/`](https://github.com/ards-project/connectors/tree/main/skills/copilot))
-as repository custom instructions — `.github/copilot-instructions.md`.
+Copilot supports Agent Skills in **agent mode** — a `SKILL.md` folder it reads
+the name and description of, then activates when a request is relevant. It uses
+the same `SKILL.md` format and skill folders as Claude, so the connectors repo
+skill works without changes.
 
-They tell Copilot to ask which Agent Finder to query, present the ranked
-results, and never install anything automatically. Pair them with the MCP tool
-below so Copilot can actually make the call.
+**Install (copy the folder)** into a directory Copilot scans —
+`~/.copilot/skills/` (personal) or `.github/skills/` (project):
+
+```
+cp -r connectors/skills/find-agentic-resources ~/.copilot/skills/
+```
+
+Copilot also reads `~/.claude/skills/` and `.claude/skills/`, so a skill you
+already installed for Claude is picked up automatically.
+
+**Install (from the UI).** In Copilot Chat, open **Configure Chat** (the gear
+icon) → the **Skills** tab → **New Skill (User)** or **New Skill (Workspace)**,
+name it `find-agentic-resources`, and paste the body of the connectors repo's
+[`SKILL.md`](https://github.com/ards-project/connectors/blob/main/skills/find-agentic-resources/SKILL.md).
 
 ### How to invoke it
 
-In **Copilot Chat**, ask in plain language — e.g. *"Find me an agent that can
-triage GitHub issues."* It asks which Agent Finder to search, queries it, and
-lists the matches.
+Just ask in **Copilot Chat (Agent mode)** — Copilot reads each skill's
+description and activates the relevant one on its own:
+
+> "Find me an MCP server for querying Postgres."
+
+It asks which Agent Finder to search, queries it, and lists the matches. Pair it
+with the MCP connector (Option B) so it can make the call and never auto-installs.
 
 ## Option B — Remote MCP connector (VS Code)
 
@@ -43,7 +60,7 @@ Add the server to your workspace `.vscode/mcp.json`:
 
 Open **Copilot Chat in Agent mode**; the `agent-finder` `search` tool is
 available. Ask it to find a capability and it runs the search and lists matches.
-Pair with the instructions (Option A) so it asks first and never auto-installs.
+Pair with the Skill (Option A) so it asks first and never auto-installs.
 
 ## Endpoint
 
