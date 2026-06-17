@@ -21,7 +21,7 @@ editor, then create the skill from the connectors repo
 
 A Skill on its own can't make network calls, so pair it with **Option B** (MCP
 connector) or a custom **Action** whose OpenAPI calls
-`POST http://agentfinder.github.com/search`.
+`POST https://agentfinder.github.com/api/v1/search`.
 
 ### How to invoke it
 
@@ -41,7 +41,7 @@ ChatGPT supports **remote MCP servers** (HTTPS, Streamable HTTP / SSE) through
 1. **Settings → Apps → Advanced settings → Developer mode** (enable it).
 2. **Create app** next to Advanced settings.
 3. Name it `Agent Finder` and paste the remote MCP URL —
-   `http://agentfinder.github.com` (or your own discovery service).
+   `https://agentfinder.github.com/api/v1/mcp` (or your own discovery service).
 4. Choose authentication — **No authentication** for an open Agent Finder, or
    **OAuth** if it requires sign-in.
 5. Save — the `search` tool is now available in chat.
@@ -54,7 +54,7 @@ first and never auto-installs.
 
 ## Endpoint
 
-Examples use GitHub's Agent Finder (`agentfinder.github.com`); Hugging Face
-Discover (`https://evalstate-hf-discover.hf.space/search`) works the same way.
+Examples use GitHub's Agent Finder (`https://agentfinder.github.com/api/v1`); Hugging Face
+Discover (`https://huggingface-hf-discover.hf.space/search`) works the same way.
 Point at either — or any compliant ARD discovery service — see
 [Endpoints](../connect.md#endpoints).

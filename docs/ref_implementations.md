@@ -34,7 +34,7 @@ Query the Hugging Face catalog service directly via:
 
 ## GitHub Agent Finder
 
-GitHub's Agent Finder is a discovery service for agentic resources — Skills, tools, and MCP servers — reachable over HTTP at `agentfinder.github.com`.
+GitHub's Agent Finder is a discovery service for agentic resources — Skills, tools, and MCP servers — reachable over HTTPS at `https://agentfinder.github.com/api/v1`.
 
 ### GitHub Copilot
 
@@ -42,7 +42,7 @@ GitHub Copilot can search it directly: add Agent Finder as a remote MCP tool (or
 
 ### HTTP API
 
-Call search directly at `http://agentfinder.github.com` (`POST /search`).
+Call search directly at `POST https://agentfinder.github.com/api/v1/search`. The MCP endpoint is `https://agentfinder.github.com/api/v1/mcp`.
 
 ## Cisco AI Catalog
 

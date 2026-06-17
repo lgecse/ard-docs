@@ -33,7 +33,7 @@ Just ask Claude in plain language — the skill triggers on intent:
 >
 > "What skills are available for making PowerPoint decks?"
 
-Claude asks **which Agent Finder** to search (e.g. `agentfinder.github.com`),
+Claude asks **which Agent Finder** to search (e.g. `https://agentfinder.github.com/api/v1`),
 queries it, and presents a numbered list of matches. Pick one and it shows you
 how to install **that** resource — it never installs anything on its own.
 
@@ -43,7 +43,7 @@ This gives Claude a native `search` tool across claude.ai, Desktop, and mobile.
 
 1. **Settings → Connectors → Add custom connector.**
 2. Name it `Agent Finder` and paste the remote MCP URL — GitHub's Agent Finder is
-   `http://agentfinder.github.com` (or use your own discovery service).
+   `https://agentfinder.github.com/api/v1/mcp` (or use your own discovery service).
 3. If the server requires sign-in, complete the OAuth flow when prompted.
 
 **Older Claude Desktop** (no native remote connectors)? Bridge it with
@@ -54,7 +54,7 @@ This gives Claude a native `search` tool across claude.ai, Desktop, and mobile.
   "mcpServers": {
     "agent-finder": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "http://agentfinder.github.com"]
+      "args": ["-y", "mcp-remote", "https://agentfinder.github.com/api/v1/mcp"]
     }
   }
 }
@@ -68,7 +68,7 @@ which endpoint first and never auto-installs.
 
 ## Endpoint
 
-Examples use GitHub's Agent Finder (`agentfinder.github.com`); Hugging Face
-Discover (`https://evalstate-hf-discover.hf.space/search`) works the same way.
+Examples use GitHub's Agent Finder (`https://agentfinder.github.com/api/v1`); Hugging Face
+Discover (`https://huggingface-hf-discover.hf.space/search`) works the same way.
 Point at either — or any compliant ARD discovery service — see
 [Endpoints](../connect.md#endpoints).

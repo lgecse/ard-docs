@@ -86,8 +86,8 @@ services interchangeably:
 
 | Discovery service | Search endpoint |
 | --- | --- |
-| GitHub Agent Finder | `agentfinder.github.com` |
-| Hugging Face Discover | `https://evalstate-hf-discover.hf.space/search` |
+| GitHub Agent Finder | `https://agentfinder.github.com/api/v1/search` |
+| Hugging Face Discover | `https://huggingface-hf-discover.hf.space/search` |
 
 Point at either of these — or any compliant ARD discovery service — when a step
 asks for an endpoint. The connector never queries an endpoint you didn't choose.

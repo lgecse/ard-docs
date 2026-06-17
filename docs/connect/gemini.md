@@ -32,7 +32,7 @@ Add the server to your Gemini CLI `settings.json`:
 {
   "mcpServers": {
     "agent-finder": {
-      "httpUrl": "http://agentfinder.github.com"
+      "httpUrl": "https://agentfinder.github.com/api/v1/mcp"
     }
   }
 }
@@ -51,7 +51,7 @@ never auto-installs.
 
 ## Endpoint
 
-Examples use GitHub's Agent Finder (`agentfinder.github.com`); Hugging Face
-Discover (`https://evalstate-hf-discover.hf.space/search`) works the same way.
+Examples use GitHub's Agent Finder (`https://agentfinder.github.com/api/v1`); Hugging Face
+Discover (`https://huggingface-hf-discover.hf.space/search`) works the same way.
 Point at either — or any compliant ARD discovery service — see
 [Endpoints](../connect.md#endpoints).

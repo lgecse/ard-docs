@@ -45,7 +45,7 @@ with the MCP connector (Option B) so it can make the call and never auto-install
 
 ## Option B — Remote MCP connector (VS Code)
 
-> **Default endpoint:** GitHub's Agent Finder at `http://agentfinder.github.com`.
+> **Default endpoint:** GitHub's Agent Finder at `https://agentfinder.github.com/api/v1/mcp`.
 > Replace it to use a different discovery service.
 
 Add the server to your workspace `.vscode/mcp.json`:
@@ -55,7 +55,7 @@ Add the server to your workspace `.vscode/mcp.json`:
   "servers": {
     "agent-finder": {
       "type": "http",
-      "url": "http://agentfinder.github.com"
+      "url": "https://agentfinder.github.com/api/v1/mcp"
     }
   }
 }
@@ -69,7 +69,7 @@ Pair with the Skill (Option A) so it asks first and never auto-installs.
 
 ## Endpoint
 
-Examples use GitHub's Agent Finder (`agentfinder.github.com`); Hugging Face
-Discover (`https://evalstate-hf-discover.hf.space/search`) works the same way.
+Examples use GitHub's Agent Finder (`https://agentfinder.github.com/api/v1`); Hugging Face
+Discover (`https://huggingface-hf-discover.hf.space/search`) works the same way.
 Point at either — or any compliant ARD discovery service — see
 [Endpoints](../connect.md#endpoints).

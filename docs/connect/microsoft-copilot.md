@@ -25,7 +25,7 @@ PDFs."* It asks which Agent Finder to search, queries it, and lists the matches.
 1. In **Copilot Studio**, open your agent → **Tools → Add a tool → Model Context
    Protocol**.
 2. Add a **custom connector** using the **Streamable** MCP transport and your
-   discovery service's remote MCP URL (e.g. `http://agentfinder.github.com`).
+   discovery service's remote MCP URL (e.g. `https://agentfinder.github.com/api/v1/mcp`).
 3. Configure authentication if required, then add the tool to your agent.
 
 ### How to invoke it
@@ -36,7 +36,7 @@ the Agent Finder `search` tool and lists matches. Pair with the instructions
 
 ## Endpoint
 
-Examples use GitHub's Agent Finder (`agentfinder.github.com`); Hugging Face
-Discover (`https://evalstate-hf-discover.hf.space/search`) works the same way.
+Examples use GitHub's Agent Finder (`https://agentfinder.github.com/api/v1`); Hugging Face
+Discover (`https://huggingface-hf-discover.hf.space/search`) works the same way.
 Point at either — or any compliant ARD discovery service — see
 [Endpoints](../connect.md#endpoints).
