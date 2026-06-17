@@ -58,7 +58,7 @@ own at any of these levels.
 | **MCP** | Add Agent Finder as a **remote MCP connector** so the chatbot gets a native `search` tool. | You want a first-class tool and your client supports MCP connectors. |
 
 Most setups use **both**: the MCP connector (or an Action) makes the actual call,
-and the Skill/instructions supply the "ask first, present, never auto-install"
+and the Skill/instructions supply the "pick a finder, present, never auto-install"
 behavior.
 
 How you add the Skill itself differs by client, and there is rarely a single

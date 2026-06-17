@@ -2,8 +2,8 @@
 
 Connect Claude to an Agent Finder either as a **Skill** (Claude Code) or a
 **remote MCP connector** (claude.ai, Desktop, mobile). They work well together —
-the MCP connector gives Claude the search tool; the Skill gives it the
-"ask first, never auto-install" behavior.
+the MCP connector gives Claude the search tool; the Skill gives it the finder
+menu, the remembered choice, and the "never auto-install" behavior.
 
 ## Option A — Skill (Claude Code)
 
